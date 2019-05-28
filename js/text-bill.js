@@ -17,23 +17,23 @@ var callTotalOneElement = document.querySelector(".callTotalOne");
 var smsTotalOneElement = document.querySelector(".smsTotalOne");
 var totalOneElement = document.querySelector(".totalOne");
 
-var callsTotal = 0;
-var smsTotal = 0;
+var callsTotal1 = 0;
+var smsTotal1 = 0;
 function textBillTotal(){
     // get the value entered in the billType textfield
     var billTypeEntered = billTypeTextElement.value.trim();
     // update the correct total
     if (billTypeEntered === "call"){
-        callsTotal += 2.75
+        callsTotal1 += 2.75
     }
     else if (billTypeEntered === "sms"){
-        smsTotal += 0.75;
+        smsTotal1 += 0.75;
     }
     
     //update the totals that is displayed on the screen.
-    callTotalOneElement.innerHTML = callsTotal.toFixed(2);
-    smsTotalOneElement.innerHTML = smsTotal.toFixed(2);
-    var totalCost = callsTotal + smsTotal;
+    callTotalOneElement.innerHTML = callsTotal1.toFixed(2);
+    smsTotalOneElement.innerHTML = smsTotal1.toFixed(2);
+    var totalCost = callsTotal1 + smsTotal1;
     totalOneElement.innerHTML = totalCost.toFixed(2);
 
     if (totalCost >= 50){
