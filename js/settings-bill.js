@@ -31,6 +31,27 @@ function updateSetting(){
     warningLevelSettingElement.innerHTML = warningLevel.toFixed(2);
     criticalLevel = Number(criticalLevelSettingElement.value)
     criticalLevelSettingElement.innerHTML = criticalLevel.toFixed(2);
+
+    if(total >= criticalLevel) {
+        totalSettingsElement.classList.add("danger");
+        settingsBillAddBtnElement.disabled = true;
+    }
+
+    if (total < criticalLevel){
+        totalSettingsElement.classList.remove("danger");
+       totalSettingsElement.classList.add("warning");
+       settingsBillAddBtnElement.disabled = false;
+       
+      }
+
+       if (total >= warningLevel){
+        totalSettingsElement.classList.add("warning");  
+    }
+    
+    if (total < warningLevel){
+        totalSettingsElement.classList.remove("warning");
+        totalSettingsElement.classList.remove("danger");  
+    }
     
 }
 
@@ -57,17 +78,22 @@ function addBtnClicked(){
     } 
 
     if(total >= criticalLevel) {
-        settingsBillAddBtnElement.disabled = true
+        totalSettingsElement.classList.add("danger");
+        settingsBillAddBtnElement.disabled = true;
     }
 
-    if (total >= criticalLevel){
-        totalSettingsElement.classList.remove("warning");
-       totalSettingsElement.classList.add("danger");
-       
-      }else if (total >= warningLevel){
+    if (total < criticalLevel){
         totalSettingsElement.classList.remove("danger");
+       totalSettingsElement.classList.add("warning");
+       settingsBillAddBtnElement.disabled = false;
+       
+      }
+
+       if (total >= warningLevel){
         totalSettingsElement.classList.add("warning");  
-    }else{
+    }
+    
+    if (total < warningLevel){
         totalSettingsElement.classList.remove("warning");
         totalSettingsElement.classList.remove("danger");  
     }
