@@ -9,7 +9,7 @@ function FactorySettingsBill() {
 
     function setCallTotal(callVal){
        
-        callTotal += callVal;
+            callTotal += callVal;
     }
        
 

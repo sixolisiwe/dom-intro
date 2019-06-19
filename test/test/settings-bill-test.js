@@ -14,31 +14,32 @@ describe('settingsBill', function () {
     });
 
     it('should check if the warningLevel input box is empty', function () {
-        var totalSetting = settingsBill.getCritical();
-        settingsBill.getCritical('criticalLevel');
-        assert.deepEqual(settingsBill.getCritical(totalSetting), true);
-    });
-
-    it('should check if the criticalLevel input box is empty', function () {
         var totalSetting = settingsBill.getWarning();
         settingsBill.getWarning('warningLevel');
         assert.deepEqual(settingsBill.getWarning(totalSetting), true);
     });
 
-    it('should count how many calls have been selected', function(){
+    it('should check if the criticalLevel input box is empty', function () {
+        var totalSetting = settingsBill.getCritical();
+        settingsBill.getCritical('criticalLevel');
+        assert.deepEqual(settingsBill.getCritical(totalSetting), true);
+    });
+
+
+    it('should count the total amount of calls selected', function(){
     settingsBill.setCallTotal(45);
     settingsBill.setCallTotal(45);
     assert.equal(settingsBill.getCallTotal(), 90.00);
    
         
     });
-    it('should count how many calls have been selected', function(){
+    it('should count the total amount of calls selected', function(){
         settingsBill.setCallTotal(45);
         settingsBill.setCallTotal(45);
         settingsBill.setSmsTotal(20);
         assert.equal(settingsBill.getCallTotal(), 180.00);
 });   
-it('should count how many sms have been selected', function(){
+it('should count the total amount of sms selected', function(){
     settingsBill.setCallTotal(45);
     settingsBill.setCallTotal(45);
     settingsBill.setSmsTotal(20);
