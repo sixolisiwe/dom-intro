@@ -11,45 +11,41 @@
 //  * once done looping over all the entries - display the total onto the screen in the billTotal element
 
 //link the function to a click event on the calculate button
-var billStringElement = document.querySelector(".billString");
-var calculateBtnElement = document.querySelector(".calculateBtn");
-var billTotalElement = document.querySelector(".billTotal");
 
-    function calculateBtnClicked(){
-        // get the string entered in the textArea
-        var billString = billStringElement.value;
-        //split the string
-        var billItems = billString.split(",");
-        // a variable for the total phone bill.
-        var billTotal = 0;
-        //loop over all the bill items
-        for (var i=0; i<billItems.length; i++){
-            var billItem = billItems[i].trim();
-            if (billItem === "call"){
-                billTotal += 2.75;
-            }
-            else if (billItem === "sms"){
-                billTotal += 0.75;
-            }
-        
-        //round to two decimals
-        var roundedBillTotal = billTotal.toFixed(2);
-        billTotalElement.innerHTML = roundedBillTotal;
 
-        if (roundedBillTotal >= 20){
-            // adding the danger class will make the text red
-            billTotalElement.classList.add("warning");
-            billTotalElement.classList.remove("danger");
+function FactoryCalculateBill(){ //methods
+    var billTotal = 0.00;// global var
+function billString(billType){// 
+
+    var billItems = billType.split(',');
+    billTotal = 0.00; // reset billTotal
+    for (var i = 0; i < billItems.length; i++) {
+        var billItem = billItems[i].trim();
+        if (billItem === "call") {
+            billTotal += 2.75;
         }
-        if (roundedBillTotal >= 30){
-            billTotalElement.classList.add("danger");
-            billTotalElement.classList.remove("warning");
-    }
-     if(roundedBillTotal < 20){
-        billTotalElement.classList.remove("danger");
-        billTotalElement.classList.remove("warning");
-}
-    }
+        else if (billItem === "sms") {
+            billTotal += 0.75;
+        }
 }
 
-    calculateBtnElement.addEventListener('click', calculateBtnClicked);
+return billTotal;
+}
+ function colorIndicator(totalBill){
+
+    if (totalBill > 20.00 && totalBill < 30.00){
+        return "warning";
+    }
+    if (totalBill > 30.00){
+        return "danger";
+    }
+
+ }
+
+return {// expose variables or methods
+    billString,
+    colorIndicator
+}
+}
+
+
