@@ -27,23 +27,99 @@ describe('settingsBill', function () {
 
 
     it('should count the total amount of calls selected', function(){
-    settingsBill.setCallTotal(45);
-    settingsBill.setCallTotal(45);
-    assert.equal(settingsBill.getCallTotal(), 90.00);
+    settingsBill.setCallTotal(4.00);
+    settingsBill.setCallTotal(4.00);
+    assert.equal(settingsBill.getCallTotal(), 8.00);
    
         
     });
     it('should count the total amount of calls selected', function(){
-        settingsBill.setCallTotal(45);
-        settingsBill.setCallTotal(45);
-        settingsBill.setSmsTotal(20);
-        assert.equal(settingsBill.getCallTotal(), 180.00);
+        settingsBill.setCallTotal(4.00);
+        settingsBill.setCallTotal(4.00);
+        settingsBill.setSmsTotal(2.00);
+        assert.equal(settingsBill.getCallTotal(), 16.00);
 });   
 it('should count the total amount of sms selected', function(){
-    settingsBill.setCallTotal(45);
-    settingsBill.setCallTotal(45);
-    settingsBill.setSmsTotal(20);
-    settingsBill.setSmsTotal(20);
-    assert.equal(settingsBill.getSmsTotal(), 60.00);
+    settingsBill.setCallTotal(4.00);
+    settingsBill.setCallTotal(4.00);
+    settingsBill.setSmsTotal(2.00);
+    settingsBill.setSmsTotal(2.00);
+    assert.equal(settingsBill.getSmsTotal(), 6.00);
+});
+
+describe('use set values', function(){
+it('should return the total call cost set for two calls at 4.00 each', function(){
+    
+    let settingsBill = FactorySettingsBill();
+
+    settingsBill.setCallCost(4.00);
+    settingsBill.setSmsCost(2.00);
+   
+
+    settingsBill.makeCall();
+    settingsBill.makeCall();
+    assert.equal(settingsBill.getTotalCost(), 8.00);
+    assert.equal(settingsBill.getTotalCallCost(), 8.00);
+    assert.equal(settingsBill.getTotalSmsCost(), 0.00);
+});
+
+it('should return the total call cost set for two calls at 6.00 each', function(){
+    
+    let settingsBill = FactorySettingsBill();
+
+    settingsBill.setCallCost(6.00);
+    settingsBill.setSmsCost(2.00);
+   
+
+    settingsBill.makeCall();
+    settingsBill.makeCall();
+    assert.equal(settingsBill.getTotalCost(), 12.00);
+    assert.equal(settingsBill.getTotalCallCost(), 12.00);
+    assert.equal(settingsBill.getTotalSmsCost(), 0.00);
+});
+
+it('should return the total sms cost set for two smses at 2.00 each', function(){
+    
+    let settingsBill = FactorySettingsBill();
+
+    settingsBill.setCallCost(6.00);
+    settingsBill.setSmsCost(2.00);
+   
+
+    settingsBill.makeSms();
+    settingsBill.makeSms();
+    assert.equal(settingsBill.getTotalCost(), 4.00);
+    assert.equal(settingsBill.getTotalCallCost(), 0.00);
+    assert.equal(settingsBill.getTotalSmsCost(), 4.00);
+});
+it('should return the total sms cost set for two smses at 5.00 each', function(){
+    
+    let settingsBill = FactorySettingsBill();
+
+    settingsBill.setCallCost(6.00);
+    settingsBill.setSmsCost(5.00);
+   
+
+    settingsBill.makeSms();
+    settingsBill.makeSms();
+    assert.equal(settingsBill.getTotalCost(), 10.00);
+    assert.equal(settingsBill.getTotalCallCost(), 0.00);
+    assert.equal(settingsBill.getTotalSmsCost(), 10.00);
+});
+it('should return the total sms and call cost set for two smses at 5.00 each and one call at 6.00 each', function(){
+    
+    let settingsBill = FactorySettingsBill();
+
+    settingsBill.setCallCost(6.00);
+    settingsBill.setSmsCost(5.00);
+   
+
+    settingsBill.makeSms();
+    settingsBill.makeSms();
+    settingsBill.makeCall();
+    assert.equal(settingsBill.getTotalCost(), 16.00);
+    assert.equal(settingsBill.getTotalCallCost(), 6.00);
+    assert.equal(settingsBill.getTotalSmsCost(), 10.00);
+});
 });
 });

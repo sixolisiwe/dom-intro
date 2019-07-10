@@ -6,6 +6,8 @@ function FactorySettingsBill() {
 
     var criticalLevel = 0;
     var warninglevel = 0;
+    var costOfsms = 0;
+    var costOfcall =0;
 
     function setCallTotal(callVal){
        
@@ -65,6 +67,32 @@ function FactorySettingsBill() {
       warningLevel = warningVal;
     }
 
+    function makeCall(){
+    callTotal += costOfcall;
+    }
+
+    function makeSms(){
+    smsTotal += costOfsms;
+    }
+    function getTotalCost(){
+      return callTotal + smsTotal;
+    }
+
+    function getTotalCallCost(){
+     return callTotal;
+    }
+
+    function getTotalSmsCost(){
+     return smsTotal;
+    }
+     
+    function setCallCost(callCost){
+        costOfcall = callCost;
+
+    }
+    function setSmsCost(smsCost){
+      costOfsms = smsCost;
+    }
     return{
         setCallTotal,
         setSmsTotal,
@@ -78,7 +106,14 @@ function FactorySettingsBill() {
         criticalValue: getCriticalValue,
         warningValue: getWarningValue,
         getWarning,
-        colorChanger: changeColor
+        colorChanger: changeColor,
+        makeCall,
+        makeSms,
+        getTotalCost,
+        getTotalCallCost,
+        getTotalSmsCost,
+        setCallCost,
+        setSmsCost
     }
 
 }
