@@ -98,7 +98,6 @@ function FactorySettingsBill() {
         setSmsTotal,
         setTotal,
         getCallTotal,
-
         getSmsTotal,
         getTotal,
         updateSettings,
