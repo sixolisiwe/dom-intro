@@ -29,14 +29,28 @@ var checkedRadioBtn = document.querySelector("input[name='billItemType']:checked
 if (checkedRadioBtn){
     billForRadio.radioBill(checkedRadioBtn.value);
     //update the totals that is displayed on the screen.
-
+    var color = billForRadio.colorIndicator();
     var userDataHTML = userTemplate({
         call :"R" + billForRadio.callReturns(),
         sms : "R" + billForRadio.smsReturns(),
         total : "R" + billForRadio.totalCost(),
     
     });
+    
+Handlebars.registerHelper("warn" ,function(){
+        if (color === "warning"){
+            return true;
+        }
 
+    });
+
+ Handlebars.registerHelper("danger" ,function(){
+        if (color === "danger"){
+            return true;
+        }
+
+    });
+    
     myData.innerHTML = userDataHTML;
 
 }
