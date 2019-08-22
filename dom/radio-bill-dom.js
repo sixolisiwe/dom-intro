@@ -22,48 +22,40 @@ var userTemplate = Handlebars.compile(templateSource);
 
 let billForRadio = FactoryradioBill();
 
-
+window.addEventListener("load", function () {
+    console.log('here')
 radioBillTotal();
-function radioBillTotal(){
-var checkedRadioBtn = document.querySelector("input[name='billItemType']:checked");
-if (checkedRadioBtn){
-    billForRadio.radioBill(checkedRadioBtn.value);
-    //update the totals that is displayed on the screen.
-    var color = billForRadio.colorIndicator();
-    var userDataHTML = userTemplate({
-        call :"R" + billForRadio.callReturns(),
-        sms : "R" + billForRadio.smsReturns(),
-        total : "R" + billForRadio.totalCost(),
+}); 
+
+function radioBillTotal() {    
+  
+    var checkedRadioBtn = document.querySelector("input[name='billItemType']:checked");
+    if (checkedRadioBtn) {
+        billForRadio.radioBill(checkedRadioBtn.value);
+        displayOutput()
+        
+    }
+    else{
+        displayOutput()
+    }
+    }
+
+
+
+    function displayOutput(){
+
+        var color= billForRadio.colorIndicator();
+        var userDataHTML = userTemplate({
+            call: "R" + billForRadio.callReturns(),
+            sms: "R" + billForRadio.smsReturns(),
+            total: "R" + billForRadio.totalCost(),
+            color
+        });
+        myData.innerHTML = userDataHTML;
+    }
     
-    });
-    
-Handlebars.registerHelper("warn" ,function(){
-        if (color === "warning"){
-            return true;
-        }
 
-    });
 
- Handlebars.registerHelper("danger" ,function(){
-        if (color === "danger"){
-            return true;
-        }
-
-    });
-    
-    myData.innerHTML = userDataHTML;
-
-}
-    // if (totalCost >= 50){
-    //     // adding the danger class will make the text red
-    //     totalTwoElement.classList.add("danger");
-
-    // }
-    // else if (totalCost >= 30){
-    //     totalTwoElement.classList.add("warning");
-// }
-
-}
 
 radioBillAddBtnElement.addEventListener('click', radioBillTotal);
 

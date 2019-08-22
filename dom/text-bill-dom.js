@@ -23,33 +23,23 @@ var myData2 = document.querySelector(".userData")
 
 let BilltextType = FactoryTextBill();
 
-textBillTotal()
-function textBillTotal(){
-var color = BilltextType.colorIndicator();
- BilltextType.textBill(billTypeTextElement.value);
+textBillTotal();
 
+function textBillTotal(){
+
+ BilltextType.textBill(billTypeTextElement.value);
+ var color = BilltextType.colorIndicator();
  var userDataHTML2 = userTemplate2({
     call :"R" + BilltextType.callReturn(),
     sms : "R" + BilltextType.smsReturn(),
     total : "R" + BilltextType.total(),
+    color
 
 });
-// console.log(userDataHTML);
+
 myData2.innerHTML = userDataHTML2;
 
-Handlebars.registerHelper("warn" ,function(){
-    if (color === "warning"){
-        return true;
-    }
-
-});
-
-Handlebars.registerHelper("danger" ,function(){
-    if (color === "danger"){
-        return true;
-    }
-
-});
-    
 }
+    
+
 addToBillBtnElement.addEventListener('click', textBillTotal);

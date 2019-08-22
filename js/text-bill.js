@@ -5,7 +5,7 @@ function FactoryTextBill() { //methods
     function textBill(textBillType) {
 
         var textBillItems = textBillType
-        // callTotal = 0.00; // reset billTotal
+
 
         if (textBillItems === "call") {
             callTotal += 2.75;
@@ -13,6 +13,7 @@ function FactoryTextBill() { //methods
         else if (textBillItems === "sms") {
             smsTotal += 0.75;
         }
+        totalCost = callTotal + smsTotal;
     }
 
     function callReturn() {
@@ -22,18 +23,16 @@ function FactoryTextBill() { //methods
         return smsTotal.toFixed(2);
     }
 
-    function total() {
-        totalCost = callTotal + smsTotal;
-
+    function total() { 
         return totalCost.toFixed(2);
     }
 
     function colorIndicator() {
 
-        if (total() > 20.00 && total() < 30.00) {
+        if (total() > 30.00 && total() < 50.00) {
             return "warning";
         }
-        if (total() > 30.00) {
+        if (total() >= 50.00) {
             return "danger";
         }
 

@@ -3,10 +3,9 @@ function FactoryradioBill() {
     var callTotal = 0;
     var smsTotal = 0;
     var total = 0;
-    function radioBill(radioBillType){// 
+    function radioBill(radioBillType){
     
         var radioBillItems = radioBillType
-        // callTotal = 0.00; // reset billTotal
            
             if (radioBillItems === "call") {
                 callTotal += 2.75;
@@ -31,10 +30,10 @@ function FactoryradioBill() {
 
     function colorIndicator(){
 
-        if (totalCost() > 20.00 && totalCost() < 30.00){
+        if (totalCost() > 30.00 && totalCost() < 50.00){
             return "warning";
         }
-        if (totalCost() > 30.00){
+        if (totalCost() >= 50.00){
             return "danger";
         }
     
